@@ -19,9 +19,8 @@ namespace MaquinaExpendedora
             };
 
             int opcion ;
-            bool continuar = true;
-
-            while (continuar)
+            char continuar ;
+            do
             {
                 Console.Clear();
 
@@ -38,71 +37,66 @@ namespace MaquinaExpendedora
                 Console.WriteLine();
                 Console.WriteLine("1. Comprar");
                 Console.WriteLine("2. Abastecer");
-                Console.WriteLine("3. Salir");
 
                 Console.Write("Seleccione opcion: ");
                 opcion = int.Parse(Console.ReadLine());
 
-                // Compra
-                if (opcion == 1)
+               
+                switch (opcion)
                 {
-                    Console.Write("Seleccione producto: ");
-                    int indice = int.Parse(Console.ReadLine()) - 1;
+                    // Compra
+                    case 1:
+                        int indice;
+                        int cantidad;
+                        Console.Write("Seleccione producto: ");
+                        indice = int.Parse(Console.ReadLine()) - 1;
 
 
-                    Console.Write("Cantidad: ");
-                    int cantidad = int.Parse(Console.ReadLine());
+                        Console.Write("Cantidad: ");
+                        cantidad = int.Parse(Console.ReadLine());
 
-                    //la cantidad elegida es menor o igual a lo que hay almacenado Y
-                    //la cantidad elegida es mayor a 0 
-                    if (cantidad <= productos[indice].Existencia && cantidad > 0)
-                    {
-                        float total = cantidad * productos[indice].Precio;
+                        //la cantidad elegida es menor o igual a lo que hay almacenado Y
+                        //la cantidad elegida es mayor a 0 
+                        if (cantidad <= productos[indice].Existencia && cantidad > 0)
+                        {
+                            float total = cantidad * productos[indice].Precio;
 
-                        productos[indice].Existencia = productos[indice].Existencia - cantidad;
+                            productos[indice].Existencia = productos[indice].Existencia - cantidad;
 
-                        Console.WriteLine("Compra realizada");
-                        Console.WriteLine("Total: $" + total);
-                    }
-                    else
-                    {
-                        Console.WriteLine("No hay suficiente inventario");
+                            Console.WriteLine("Compra realizada");
+                            Console.WriteLine("Total: $" + total);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No hay suficiente inventario");
 
-                    }
+                        }
+                        break;
+                    // Agregar Productos
+                    case 2:
+                        
+                        int agregar;
+                        Console.Write("Seleccione producto: ");
+                        indice = int.Parse(Console.ReadLine()) - 1;
+
+
+                        Console.Write("Cantidad a agregar: ");
+                        agregar = int.Parse(Console.ReadLine());
+
+
+                        if (agregar > 0)
+                        {
+                            productos[indice].Existencia = productos[indice].Existencia + agregar;
+
+                            Console.WriteLine("Inventario actualizado");
+
+                        }
+                        break;
                 }
-                // Agregar Productos
-                else if (opcion == 2)
-                {
-                    int indice;
-                    int agregar;
-                    Console.Write("Seleccione producto: ");
-                    indice = int.Parse(Console.ReadLine()) - 1;
+                Console.WriteLine("¿Desea continuar? (S/N)");
+                continuar = char.Parse(Console.ReadLine().ToUpper());
+            } while (continuar == 'S');
 
-
-                    Console.Write("Cantidad a agregar: ");
-                    agregar = int.Parse(Console.ReadLine());
-
-
-                    if (agregar > 0)
-                    {
-                        productos[indice].Existencia = productos[indice].Existencia + agregar;
-
-                        Console.WriteLine("Inventario actualizado");
-
-                    }
-                }
-                //Opcion de Salida
-                else if(opcion==3)
-                {
-                    Console.WriteLine("Saliendo...");
-                    continuar = false;
-                }
-
-                Console.WriteLine();
-                Console.WriteLine("Presione una tecla para continuar");
-
-                Console.ReadKey();
-            }
         }
     }
 }

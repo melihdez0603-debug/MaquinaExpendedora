@@ -7,18 +7,34 @@ using System.Threading.Tasks;
 
 namespace MaquinaExpendedora
 {
-    class Producto
+    internal class Producto
     {
-        public string Nombre;
-        public float Precio;
-        public int Existencia;
+        private string nombre;
+        private float precio;
+        private int existencia;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+        public float Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
+        public int Existencia
+        {
+            get { return existencia; }
+            set { existencia = value; }
+        }
 
         // Constructor
         public Producto(string nombre, float precio, int existencia)
         {
-            this.Nombre = nombre;
-            this.Precio = precio;
-            this.Existencia = existencia;
+            this.nombre = nombre;
+            this.precio = precio;
+            this.existencia = existencia;
         }
 
     }

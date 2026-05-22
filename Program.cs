@@ -92,6 +92,9 @@ namespace MaquinaExpendedora
 
                         }
                         break;
+                    default:
+                        Console.WriteLine("Opcion Invalida...");
+                        break;
                 }
                 Console.WriteLine("¿Desea continuar? (S/N)");
                 continuar = char.Parse(Console.ReadLine().ToUpper());
